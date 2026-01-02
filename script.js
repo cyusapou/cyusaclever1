@@ -53,7 +53,10 @@ function renderSubmissions() {
 
   for (const item of list) {
     const li = document.createElement("li");
-    li.textContent = `${item.fullName} | ${item.email} | ${item.projectTitle} (${item.projectType})`;
+    const members = Array.isArray(item.members) && item.members.length
+      ? ` | Members: ${item.members.map((m) => m.name).filter(Boolean).join(", ")}`
+      : "";
+    li.textContent = `${item.fullName} | ${item.email} | ${item.schoolName} | ${item.projectTitle} (${item.projectType})${members}`;
     submissionsList.appendChild(li);
   }
 }
@@ -99,6 +102,15 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!validate()) return;
 
+  const members = Array.from(membersRoot.querySelectorAll(".member")).map((memberEl) => {
+    const nameInput = memberEl.querySelector('input[name^="memberName_"]');
+    const emailInput = memberEl.querySelector('input[name^="memberEmail_"]');
+    return {
+      name: nameInput ? String(nameInput.value || "").trim() : "",
+      email: emailInput ? String(emailInput.value || "").trim() : "",
+    };
+  });
+
   const payload = {
     fullName: getValue("fullName"),
     schoolName: getValue("schoolName"),
@@ -106,6 +118,7 @@ form.addEventListener("submit", (e) => {
     phone: getValue("phone").replace(/\s+/g, ""),
     projectTitle: getValue("projectTitle"),
     projectType: getValue("projectType"),
+    members,
     submittedAt: new Date().toISOString(),
   };
 
