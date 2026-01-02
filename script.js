@@ -74,7 +74,15 @@ function addMember() {
         <input type="email" name="memberEmail_${idx}" placeholder="member@example.com" />
       </div>
     </div>
+    <div class="actions">
+      <button type="button" class="remove" aria-label="Remove member ${idx}">Remove Member</button>
+    </div>
   `;
+
+  wrapper.querySelector(".remove").addEventListener("click", () => {
+    wrapper.remove();
+  });
+
   membersRoot.appendChild(wrapper);
 }
 
