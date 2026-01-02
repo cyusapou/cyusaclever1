@@ -169,6 +169,11 @@ button.primary {
 
 button.primary:hover { background: var(--button-hover); }
 
+button.remove {
+  background: #e5e7eb;
+  color: #111827;
+}
+
 .members {
   display: flex;
   flex-direction: column;
