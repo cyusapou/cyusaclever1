@@ -7,24 +7,41 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap">
-      <div class="brand">SEZERANO ALPHA</div>
-      <nav class="nav" aria-label="Primary">
-        <a href="index.html">Register</a>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-mark" aria-hidden="true"></div>
+        <div class="logo-text">
+          <div class="logo-title">Innovate Forms</div>
+          <div class="logo-sub">SEZERANO ALPHA</div>
+        </div>
+      </div>
+      <nav class="menu" aria-label="Primary">
+        <a class="menu-link" href="index.html">Back to form</a>
       </nav>
     </div>
   </header>
 
-  <div class="titlebar">
-    <h1>Registration Help</h1>
-  </div>
+  <main class="container layout">
+    <section class="hero" aria-label="Help">
+      <div class="badge">Support</div>
+      <h1 class="hero-title">Registration Help</h1>
+      <p class="hero-text">Quick tips to submit a clean application.</p>
+    </section>
 
-  <main class="main">
-    <section class="card">
-      <p style="margin:0;font-size:11px;color:#374151;">
-        Fill in all required fields, make sure your email format is correct, and use a 10-digit phone number.
-      </p>
+    <section class="surface" aria-label="Help content">
+      <div class="surface-head">
+        <div>
+          <div class="surface-title">Tips</div>
+          <div class="surface-sub">Fix any red validation message before submitting.</div>
+        </div>
+      </div>
+      <ul style="margin:0;padding-left:16px;font-size:12px;color:#0f172a;">
+        <li>Use a valid email format (example@gmail.com).</li>
+        <li>Phone number should be exactly 10 digits.</li>
+        <li>Select gender, level, and course from the dropdowns.</li>
+        <li>Add emergency contacts only if needed.</li>
+      </ul>
     </section>
   </main>
 </body>

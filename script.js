@@ -23,8 +23,11 @@ function validate() {
   const schoolName = getValue("schoolName");
   const email = getValue("email");
   const phone = getValue("phone").replace(/\s+/g, "");
-  const projectTitle = getValue("projectTitle");
-  const projectType = getValue("projectType");
+  const dob = getValue("dob");
+  const gender = getValue("gender");
+  const level = getValue("level");
+  const course = getValue("course");
+  const address = getValue("address");
   const terms = document.getElementById("terms").checked;
 
   if (!fullName) { setError("err_fullName", "Full name is required"); ok = false; } else setError("err_fullName", "");
@@ -38,8 +41,11 @@ function validate() {
   else if (!PHONE_RE.test(phone)) { setError("err_phone", "Phone must be 10 digits"); ok = false; }
   else setError("err_phone", "");
 
-  if (!projectTitle) { setError("err_projectTitle", "Project title is required"); ok = false; } else setError("err_projectTitle", "");
-  if (!projectType) { setError("err_projectType", "Select project type"); ok = false; } else setError("err_projectType", "");
+  if (!dob) { setError("err_dob", "Date of birth is required"); ok = false; } else setError("err_dob", "");
+  if (!gender) { setError("err_gender", "Select gender"); ok = false; } else setError("err_gender", "");
+  if (!level) { setError("err_level", "Select level"); ok = false; } else setError("err_level", "");
+  if (!course) { setError("err_course", "Select course"); ok = false; } else setError("err_course", "");
+  if (!address) { setError("err_address", "Address is required"); ok = false; } else setError("err_address", "");
 
   if (!terms) { setError("err_terms", "You must accept terms and conditions"); ok = false; } else setError("err_terms", "");
 
@@ -53,10 +59,10 @@ function renderSubmissions() {
 
   for (const item of list) {
     const li = document.createElement("li");
-    const members = Array.isArray(item.members) && item.members.length
-      ? ` | Members: ${item.members.map((m) => m.name).filter(Boolean).join(", ")}`
+    const contacts = Array.isArray(item.contacts) && item.contacts.length
+      ? ` | Contacts: ${item.contacts.map((c) => c.name).filter(Boolean).join(", ")}`
       : "";
-    li.textContent = `${item.fullName} | ${item.email} | ${item.schoolName} | ${item.projectTitle} (${item.projectType})${members}`;
+    li.textContent = `${item.fullName} | ${item.email} | ${item.course} | ${item.level}${contacts}`;
     submissionsList.appendChild(li);
   }
 }
@@ -66,19 +72,19 @@ function addMember() {
   const wrapper = document.createElement("div");
   wrapper.className = "member";
   wrapper.innerHTML = `
-    <div class="member-title">Team Member ${idx}</div>
+    <div class="member-title">Emergency Contact ${idx}</div>
     <div class="row">
       <div class="field">
         <label>Name</label>
-        <input type="text" name="memberName_${idx}" placeholder="Member name" />
+        <input type="text" name="contactName_${idx}" placeholder="Contact name" />
       </div>
       <div class="field">
-        <label>Email</label>
-        <input type="email" name="memberEmail_${idx}" placeholder="member@example.com" />
+        <label>Phone</label>
+        <input type="tel" name="contactPhone_${idx}" placeholder="07XX XXX XXX" />
       </div>
     </div>
     <div class="actions">
-      <button type="button" class="remove" aria-label="Remove member ${idx}">Remove Member</button>
+      <button type="button" class="remove" aria-label="Remove contact ${idx}">Remove Contact</button>
     </div>
   `;
 
@@ -91,7 +97,7 @@ function addMember() {
 
 addMemberBtn.addEventListener("click", addMember);
 
-for (const name of ["fullName", "schoolName", "email", "phone", "projectTitle", "projectType"]) {
+for (const name of ["fullName", "schoolName", "email", "phone", "dob", "gender", "level", "course", "address"]) {
   const el = form.elements[name];
   if (el) el.addEventListener("input", validate);
 }
@@ -102,12 +108,12 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!validate()) return;
 
-  const members = Array.from(membersRoot.querySelectorAll(".member")).map((memberEl) => {
-    const nameInput = memberEl.querySelector('input[name^="memberName_"]');
-    const emailInput = memberEl.querySelector('input[name^="memberEmail_"]');
+  const contacts = Array.from(membersRoot.querySelectorAll(".member")).map((memberEl) => {
+    const nameInput = memberEl.querySelector('input[name^="contactName_"]');
+    const phoneInput = memberEl.querySelector('input[name^="contactPhone_"]');
     return {
       name: nameInput ? String(nameInput.value || "").trim() : "",
-      email: emailInput ? String(emailInput.value || "").trim() : "",
+      phone: phoneInput ? String(phoneInput.value || "").trim().replace(/\s+/g, "") : "",
     };
   });
 
@@ -116,9 +122,12 @@ form.addEventListener("submit", (e) => {
     schoolName: getValue("schoolName"),
     email: getValue("email"),
     phone: getValue("phone").replace(/\s+/g, ""),
-    projectTitle: getValue("projectTitle"),
-    projectType: getValue("projectType"),
-    members,
+    dob: getValue("dob"),
+    gender: getValue("gender"),
+    level: getValue("level"),
+    course: getValue("course"),
+    address: getValue("address"),
+    contacts,
     submittedAt: new Date().toISOString(),
   };
 

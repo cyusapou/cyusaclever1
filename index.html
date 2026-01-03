@@ -7,25 +7,49 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap">
-      <div class="brand">SEZERANO ALPHA</div>
-      <nav class="nav" aria-label="Primary">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Competition</a>
-        <a href="#">Register</a>
-        <a href="#">Contact</a>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-mark" aria-hidden="true"></div>
+        <div class="logo-text">
+          <div class="logo-title">Innovate Forms</div>
+          <div class="logo-sub">SEZERANO ALPHA</div>
+        </div>
+      </div>
+      <nav class="menu" aria-label="Primary">
+        <a href="#" class="menu-link">Overview</a>
+        <a href="#" class="menu-link">Register</a>
+        <a href="#" class="menu-link">Support</a>
       </nav>
     </div>
   </header>
 
-  <div class="titlebar">
-    <h1>Student Registration Portal</h1>
-  </div>
+  <main class="container layout">
+    <section class="hero" aria-label="Intro">
+      <div class="badge">Student Application</div>
+      <h1 class="hero-title">Registration</h1>
+      <p class="hero-text">Submit your project details, add team members, and review saved submissions.</p>
+      <div class="hero-panel">
+        <div class="hero-stat">
+          <div class="hero-stat-label">Validation</div>
+          <div class="hero-stat-value">Live</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Storage</div>
+          <div class="hero-stat-value">localStorage</div>
+        </div>
+      </div>
+    </section>
 
-  <main class="main">
-    <section class="card" aria-label="Registration">
+    <section class="surface" aria-label="Registration">
+      <div class="surface-head">
+        <div>
+          <div class="surface-title">Student Registration Form</div>
+          <div class="surface-sub">Fields marked by validation must be filled correctly.</div>
+        </div>
+        <a class="surface-link" href="new.html">Help</a>
+      </div>
+
       <form id="regForm" class="form" novalidate>
         <div class="row">
           <div class="field">
@@ -53,21 +77,52 @@
           </div>
         </div>
 
-        <div class="field">
-          <label for="projectTitle">Project Title</label>
-          <input id="projectTitle" name="projectTitle" type="text" placeholder="Project title" />
-          <div class="error" id="err_projectTitle"></div>
+        <div class="row">
+          <div class="field">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" name="dob" type="date" />
+            <div class="error" id="err_dob"></div>
+          </div>
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+              <option value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="error" id="err_gender"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="level">Level</label>
+            <select id="level" name="level">
+              <option value="">Select level</option>
+              <option value="L3">L3</option>
+              <option value="L4">L4</option>
+              <option value="L5">L5</option>
+            </select>
+            <div class="error" id="err_level"></div>
+          </div>
+          <div class="field">
+            <label for="course">Course</label>
+            <select id="course" name="course">
+              <option value="">Select course</option>
+              <option value="Software Development">Software Development</option>
+              <option value="Networking">Networking</option>
+              <option value="Multimedia">Multimedia</option>
+              <option value="Electrical">Electrical</option>
+            </select>
+            <div class="error" id="err_course"></div>
+          </div>
         </div>
 
         <div class="field">
-          <label for="projectType">Project Type</label>
-          <select id="projectType" name="projectType">
-            <option value="">Select project type</option>
-            <option value="Web">Web</option>
-            <option value="Mobile">Mobile</option>
-            <option value="Desktop">Desktop</option>
-          </select>
-          <div class="error" id="err_projectType"></div>
+          <label for="address">Address</label>
+          <input id="address" name="address" type="text" placeholder="District / Sector / Cell" />
+          <div class="error" id="err_address"></div>
         </div>
 
         <div class="field">
@@ -77,10 +132,10 @@
         </div>
 
         <div class="actions">
-          <button type="button" id="addMember">Add Team Member</button>
+          <button type="button" id="addMember" class="ghost">Add Emergency Contact</button>
         </div>
 
-        <div id="members" class="members" aria-label="Team members"></div>
+        <div id="members" class="members" aria-label="Emergency contacts"></div>
 
         <label class="check">
           <input id="terms" type="checkbox" name="terms" />

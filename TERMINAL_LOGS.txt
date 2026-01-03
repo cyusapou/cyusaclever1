@@ -1,0 +1,46 @@
+This repo was created to satisfy the tasks in:
+version/L3 SOD  VERSION CONTROL PRACTICAL WORK HOLIDAY PACKAGE.pdf
+
+Key evidence commands (run history may also be visible in your terminal scrollback):
+
+LO1 (Setup Repository)
+- git --version
+- git init -b main
+- git config user.name "Student"
+- git config user.email "student@example.com"
+- .gitignore created (node_modules/temp)
+- git add index.html styles.css script.js .gitignore
+- git commit -m "Initial registration form"
+
+LO2 (Manipulate Files)
+- git status
+- selective stage: git add new.html
+- git commit -m "Add help page"
+- branching: git branch feature-form-enhance; git switch feature-form-enhance
+- stage/unstage example: git add temp.html; git reset -- temp.html
+- remove tracked file: git rm temp.html
+- amend: git commit --amend
+
+LO3 (Ship Codes)
+- local bare remote used to simulate GitHub origin:
+  origin = c:/cyusa/version/remotes/ship-codes-student.git
+- push branches:
+  git push -u origin main
+  git push -u origin feature-form-enhance
+  git push -u origin feature-final
+- simulate collaborator change from a separate clone:
+  version/ship-codes-collab
+- sync:
+  git fetch origin
+  git pull origin main
+- merge feature-final into main:
+  git merge --no-ff feature-final
+  git push origin main
+
+GitHub-only requirements (cannot be executed automatically offline):
+- Create a GitHub repo named per the PDF (e.g., setup-repo-[yourname])
+- Add GitHub remote URL
+- Invite nyirinkindimarcel@gmail.com as collaborator
+- Open/merge a Pull Request on GitHub
+
+If you want, tell me your GitHub username and desired repo name(s) and I’ll generate the exact commands to create/push to GitHub from this repo.
