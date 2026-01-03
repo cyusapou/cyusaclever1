@@ -215,6 +215,7 @@ body {
 .field input[type="text"],
 .field input[type="email"],
 .field input[type="tel"],
+.field input[type="date"],
 .field select {
   height: 34px;
   border: 1px solid var(--border);
